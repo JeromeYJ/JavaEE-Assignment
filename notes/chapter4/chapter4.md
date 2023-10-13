@@ -29,12 +29,13 @@ HTTP Method
 
 3. Restful API 的状态码
 ![Alt text](image-2.png)
-常见：200：OK  500
+<br>常见：200：OK  500
 <br>
 
 4. APIs
 ![Alt text](image-1.png)
 <br>
+
 5. Lombok
 Lombok
 简化java代码的工具.
@@ -65,6 +66,7 @@ https://hezhiqiang8909.gitbook.io/java/docs/javalib/lombok
 
     3. PUT API
     <br>
+    
     4. Delete API
     delete方法无请求体
 
