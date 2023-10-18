@@ -12,7 +12,7 @@
 ## 2. Spring IOC（控制反转）
 + Tight-couple programming（紧耦合式的编程）
 面向对象原则之————开闭原则（对于功能扩展开放，对于代码修改封闭）
-+ Loose-coupled programming（松耦合）
++ Loose-coupled programming（松耦合）<br>
 ![Alt text](image-2.png)
 在类之外，使用其他方式为对象赋值（例如上图中的setBookDao()方法）
 
@@ -45,6 +45,6 @@ destroy-method：bean被销毁前的操作
 
 
 ## 7. Spring Annotations
-+ Spring with annotations
++ Spring with annotations<br>
 ![Alt text](image-3.png)
 @Component 之后若无参数，则默认将其下的类名为bean的id
