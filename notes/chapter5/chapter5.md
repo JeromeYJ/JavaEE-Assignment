@@ -1,9 +1,9 @@
 # <center>Chapter5 Spring Core</center>
 ## 1. Spring Data
 + Spring Data
-<br>
+<br><br>
 ![Alt text](image.png)
-<br>
+<br><br>
     1. MongoDB是一个基于分布式文件存储的数据库
     2. Neo4j是一个图形数据库，它将结构化数据存储在网络上而不是表中
 <br>
@@ -22,7 +22,7 @@
 <br>
 + 一对多查询(One-to-many Query)
 一对多的查询中，查询结果使用特殊的类表示，需要调用另一个mapper方法进行查找来填充其中的“多数”成员，并且使用<font color = red>@Result</font>注解与<font color = red>@Many</font>注解。
-<br>
+<br><br>
 ![Alt text](image-1.png)
 
 
