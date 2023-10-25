@@ -1,5 +1,9 @@
 package edu.cn.demo;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import edu.cn.demo.dao.ProductDao;
+import edu.cn.demo.dao.SupplierDao;
 import edu.cn.demo.domain.Product;
 import edu.cn.demo.domain.ProductDto;
 import edu.cn.demo.domain.Product_supplier;
@@ -14,7 +18,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +38,6 @@ public class ProductServiceTest {
 
     @Autowired
     Product_supplierServiceImpl product_supplierService;
-
 
 
     @BeforeEach
@@ -110,6 +115,10 @@ public class ProductServiceTest {
 
         List<Product_supplier> list = product_supplierService.searchByProductId(id);
         assertEquals(3, list.size());
+
+        //ProductDto productDto = product_supplierService.searchByIdWithSuppliers(id);
+        //assertEquals(3, productDto.getSupplierList().size());
+        //assertNotNull(productDto.getSupplierList().get(0));
     }
 
     @Test
@@ -157,6 +166,33 @@ public class ProductServiceTest {
 
         assertNull(service.getById(id));
         assertNull(service.searchByName("《Tim》"));
+    }
+
+
+    //新增的测试函数
+    @Test
+    public void searchByProductIdWithSuppliersTest(){
+        Integer id = service.searchByName("《郭源潮》").getId();
+
+        Map<String,Object> condition1 = new HashMap<>();
+        condition1.put("id",id);
+        IPage<ProductDto> page = product_supplierService.searchByProductIdWithSuppliers(condition1, 0, 10);
+        assertEquals(1,page.getRecords().size());
+
+        Map<String,Object> condition2 = new HashMap<>();
+        condition2.put("name","《郭源潮》");
+        condition2.put("price","300.0");
+        condition2.put("amount","4");
+        page = product_supplierService.searchByProductIdWithSuppliers(condition2, 0, 10);
+        assertEquals(0, page.getRecords().size());
+    }
+
+
+    @Test
+    public void testAspect(){
+        Integer id = service.searchByName("《郭源潮》").getId();
+
+        service.searchById(id);
     }
 
 }

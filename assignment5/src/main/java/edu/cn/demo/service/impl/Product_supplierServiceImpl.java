@@ -1,6 +1,8 @@
 package edu.cn.demo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import edu.cn.demo.domain.Product;
 import edu.cn.demo.domain.ProductDto;
 import edu.cn.demo.domain.Product_supplier;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,10 +40,24 @@ public class Product_supplierServiceImpl extends ServiceImpl<Product_supplierDao
         return this.getBaseMapper().selectList(lqw);
     }
 
+    //查询product并且返回对应suppliers
+    public IPage<ProductDto> searchByProductIdWithSuppliers(Map<String, Object> condition, int pageNum, int pageSize){
+        Page<ProductDto> page = new Page<>(pageNum, pageSize);
+        LambdaQueryWrapper<ProductDto> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(condition.containsKey("id"), Product::getId, condition.get("id"));
+        lqw.eq(condition.containsKey("name"), Product::getName, condition.get("name"));
+        lqw.eq(condition.containsKey("price"), Product::getPrice, condition.get("price"));
+        lqw.eq(condition.containsKey("amount"), Product::getAmount, condition.get("amount"));
+
+        this.getBaseMapper().searchProductsWithSuppliers(page, lqw);
+        return page;
+    }
+
     public boolean add(Product_supplier product_supplier){
         return this.save(product_supplier);
     }
 
+    /*
     //通过id查找product与其供货商，都存于ProductDto类型中
     public ProductDto searchByIdWithSuppliers(Integer id){
         ProductDto productDto = new ProductDto();
@@ -61,5 +78,6 @@ public class Product_supplierServiceImpl extends ServiceImpl<Product_supplierDao
 
         return productDto;
     }
+    */
 
 }
