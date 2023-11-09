@@ -62,7 +62,9 @@ The Filter has to loadUser from database for each request, and it will slow down
 + @EnableCaching注解
 
 + CacheManager implmentations
+
 <br>
+
 ![Alt text](image-5.png)
 
 
