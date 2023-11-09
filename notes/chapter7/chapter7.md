@@ -4,8 +4,10 @@
 A polular security framework that secures JavaEE applications
 + Spring Security Filters Chains
 <br>
+
 ![Alt text](image.png)
 <br>
+
 ![Alt text](image-1.png)
 
 ## 2. Basic Authentication（基础的认证）
@@ -60,6 +62,7 @@ The Filter has to loadUser from database for each request, and it will slow down
 + @EnableCaching注解
 
 + CacheManager implmentations
+<br>
 ![Alt text](image-5.png)
 
 
